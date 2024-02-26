@@ -21,6 +21,10 @@ h1 {
     font-size: 6em;
 }
 
+p {
+    margin: .5em;
+}
+
 .weather-container {
     display: flex;
     flex-direction: column;
@@ -68,6 +72,10 @@ input::placeholder {
     color: black;
     opacity: 0.5;
     transition: 0.3s;
+}
+
+.location {
+    font-size: 2em;
 }
 
 .weather>img {
