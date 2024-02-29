@@ -88,7 +88,7 @@ searchLocation.addEventListener( 'click', async () => {
 // testing2();
 
 // TODO: Geo convert for log lat API
-+
+
 // TODO: Add a spinner while fetching the weather from the API
 
 // TODO: Change image daily
