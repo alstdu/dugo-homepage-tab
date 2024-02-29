@@ -72,9 +72,7 @@ searchLocation.addEventListener( 'click', async () => {
     weatherImageDisplay.src = 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png';
 } );
 
-const displayWeather = ( weather ) => {
-    locationDisplay.innerText = weather.name;
-};
++
 
 // this way is absolutely cursed why would anyone not use async await
 // function testing2() {
@@ -90,7 +88,7 @@ const displayWeather = ( weather ) => {
 // testing2();
 
 // TODO: Geo convert for log lat API
-// TODO: Implement openweather API
++
 // TODO: Add a spinner while fetching the weather from the API
 
 // TODO: Change image daily
