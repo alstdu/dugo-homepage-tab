@@ -5,6 +5,7 @@ const locationDisplay = document.querySelector( '#location' );
 const temperatureDisplay = document.querySelector( '#temperature' );
 const searchLocation = document.querySelector( '#search-button' );
 const weatherDescriptionDisplay = document.querySelector( '#description' );
+const weatherImageDisplay = document.querySelector( '#weatherImage' );
 
 // sets up an interval function that runs every second (1000 mil.)
 setInterval( function() {
@@ -55,6 +56,20 @@ searchLocation.addEventListener( 'click', async () => {
     // update the content displayed in the browser
     //     display the main weather description (e.g., "Cloudy", "Rain", etc.)
     weatherDescriptionDisplay.innerHTML = weather.weather[0].main;
+    // hold on before we get too deep into this... there's built in images
+    // switch ( weather.weather[0].main ) {
+    // case 'Cloudy':
+    //     weatherImageDisplay.src = "./images/cloudy.png";
+    //     break;
+    // case 'Rain':
+    //     weatherImageDisplay.src = "./images/light-rain.png";
+    //     break;
+    // case ''
+    // }
+
+    // instead of downloading every single weather image, use the built in ones
+    //    we are setting the source of the image by concatenating the img URL and the current icon code
+    weatherImageDisplay.src = 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png';
 } );
 
 const displayWeather = ( weather ) => {
