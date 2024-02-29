@@ -22,7 +22,7 @@ p
 
 .glass-effect 
 	// from https://css.glass
-	background: rgba(255, 255, 255, 0.3) 
+	background: rgba(255, 255, 255, 0.4) 
 	border-radius: 1em 
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) 
 	backdrop-filter: blur(5px) 
@@ -36,8 +36,8 @@ p
 	align-items: center 
 	position: relative 
 	width: 17em 
-	height: 14em 
-	padding: 1em 
+	height: 15em 
+	padding: .5em 
 	text-align: center 
 	line-height: 0.5 
 	
@@ -52,7 +52,12 @@ input
 		color: black 
 		
 .search-box 
+
+	& > #locationInput
+		width: 100%
+
 	& > button 
+		margin-top: 1em
 		background-color: transparent 
 		border: unset 
 		box-shadow: 1px 1px 5px 
@@ -101,6 +106,7 @@ input
 #done 
 	transform: scale(3)
 	
-.zen-quote 
+.random-quote 
+	font-weight: bold
 	max-width: max-content 
 	margin: auto 
