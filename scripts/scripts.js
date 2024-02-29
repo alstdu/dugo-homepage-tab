@@ -1,9 +1,13 @@
+// TODO: Geo convert for log lat API
+// TODO: Add a spinner while fetching the weather from the API
+
 // grab all our HTML elements
 const dateDisplay = document.querySelector( '.date' );
 const timeDisplay = document.querySelector( '.hour' );
 const locationDisplay = document.querySelector( '#location' );
 const temperatureDisplay = document.querySelector( '#temperature' );
-const searchLocation = document.querySelector( '#search-button' );
+const searchLocation = document.querySelector( '#searchButton' );
+const locationInput = document.querySelector( '#locationInput' );
 const weatherDescriptionDisplay = document.querySelector( '#description' );
 const weatherImageDisplay = document.querySelector( '#weatherImage' );
 const randomQuoteDisplay = document.querySelector( '#quote' );
@@ -46,6 +50,12 @@ async function fetchWeather() {
     return weather;
 };
 
+async function fetchGeo(location) {
+    const url = 'http://api.openweathermap.org/geo/1.0/direct?q=' + location + '&appid=' + apiKey;
+    const response = await fetch( url );
+    const geo = await response.json();
+    console.log( geo );
+}
 // set up an event listener for our search button
 //     when the button is clicked, the callback function will trigger
 searchLocation.addEventListener( 'click', async () => {
@@ -72,6 +82,7 @@ searchLocation.addEventListener( 'click', async () => {
     // instead of downloading every single weather image, use the built in ones
     //    we are setting the source of the image by concatenating the img URL and the current icon code
     weatherImageDisplay.src = 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png';
+    fetchGeo( locationInput.value );
 } );
 
 // Copyright © 2019 Luke Peavey
@@ -100,9 +111,3 @@ getRandomQuote();
 //     } );
 // }
 // testing2();
-
-// TODO: Geo convert for log lat API
-
-// TODO: Add a spinner while fetching the weather from the API
-
-// TODO: Change image daily
