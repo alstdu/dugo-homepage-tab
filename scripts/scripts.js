@@ -35,10 +35,10 @@ const fetchDate = () => {
 fetchDate();
 
 // fetch weather data from the OpenWeatherMap API.
-async function fetchWeather() {
+async function fetchWeather( lat, long ) {
     // construct the API URL with queries and API key
     // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=49.282730&lon=-123.120735&appid=' + apiKey;
+    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=' + apiKey;
     // send HTTP request to the API using the fetch() function.
     //     await keyword ensures that the response is fully received before proceeding
     const response = await fetch( url );
