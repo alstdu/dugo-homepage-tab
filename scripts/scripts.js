@@ -50,7 +50,8 @@ async function fetchWeather( lat, long ) {
     return weather;
 };
 
-async function fetchGeo(location) {
+// this API takes a physical location and converts it to lat long
+async function fetchGeo( location ) {
     const url = 'http://api.openweathermap.org/geo/1.0/direct?q=' + location + '&appid=' + apiKey;
     const response = await fetch( url );
     const geo = await response.json();
@@ -79,9 +80,10 @@ searchLocation.addEventListener( 'click', async () => {
     // case ''
     // }
 
-    // instead of downloading every single weather image, use the built in ones
+    // instead of downloading every single weather image, use the built in ones we forgot about
     //    we are setting the source of the image by concatenating the img URL and the current icon code
     weatherImageDisplay.src = 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png';
+    // grab the user input from the search box and pass it to fetchGeo
     fetchGeo( locationInput.value );
 } );
 
