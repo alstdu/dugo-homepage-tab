@@ -43,8 +43,6 @@ async function fetchWeather( lat, long ) {
     //     await keyword ensures that the response is fully received before proceeding
     const response = await fetch( url );
     const weather = await response.json();
-    // log the weather data to the console (for debugging purposes)
-    console.log( weather );
     // return the weather data to the caller
     //     this allows us to call the function later and get the values
     return weather;
@@ -56,19 +54,27 @@ async function fetchGeo( location ) {
     const response = await fetch( url );
     const geo = await response.json();
     console.log( geo );
+    return geo;
 }
 // set up an event listener for our search button
 //     when the button is clicked, the callback function will trigger
 searchLocation.addEventListener( 'click', async () => {
+    // grab the user input from the search box and pass it to fetchGeo
+    const geo = await fetchGeo( locationInput.value );
+
     // call fetchWeather() to retrieve weather data when clicked
-    const weather = await fetchWeather();
+    const weather = await fetchWeather( geo[0].lat, geo[0].lon );
+
     locationDisplay.innerText = weather.name;
+
     // calculate the temperature in Celsius by subtracting 273.15 from the temperature in Kelvin
     //    I later discovered there's a query for this but... I figured out the formula so... it's staying
     temperatureDisplay.innerHTML = Math.round( weather.main.temp - 273.15 ) + '&deg;C';
+
     // update the content displayed in the browser
     //     display the main weather description (e.g., "Cloudy", "Rain", etc.)
     weatherDescriptionDisplay.innerHTML = weather.weather[0].main;
+
     // hold on before we get too deep into this... there's built in images
     // switch ( weather.weather[0].main ) {
     // case 'Cloudy':
@@ -83,8 +89,6 @@ searchLocation.addEventListener( 'click', async () => {
     // instead of downloading every single weather image, use the built in ones we forgot about
     //    we are setting the source of the image by concatenating the img URL and the current icon code
     weatherImageDisplay.src = 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png';
-    // grab the user input from the search box and pass it to fetchGeo
-    fetchGeo( locationInput.value );
 } );
 
 // Copyright © 2019 Luke Peavey
