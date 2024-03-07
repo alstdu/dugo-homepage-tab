@@ -15,14 +15,15 @@
                     <input id="locationInput" type="text" placeholder="city, state/province code, country code">
                     <button id="searchButton">Search</button>
                 </div>
-                <div class="weather" id="weather">
-                    <!-- we'll populate the image here -->
-                    <img id="weatherImage" src="">
-                </div>
                 <div class="weather-info" id="weatherInfo">
+                    <img id="weatherImage" src="">
                     <p class="location" id="location"></p>
                     <p class="temperature" id="temperature"><span></span></p>
                     <p class="description" id="description"></p>
+                </div>
+                <div class="weather-loading lds-ripple" id="weatherLoading" style="display: none;">
+                    <div></div>
+                    <div></div>
                 </div>
             </section>
             <section class="time glass-effect" id="time">

@@ -1,112 +1,158 @@
-* 
-	box-sizing: border-box 
+*
+	box-sizing: border-box
 
-body 
-	display: flex 
-	margin: 0 
+body
+	display: flex
+	margin: 0
 	background-image: url(https://picsum.photos/2180/1280)
-	min-height: 100vh 
-	font-family: sans-serif 
-	text-align: center 
-	
-.main-content 
-	padding: 1em 
-	min-width: 100% 
-	
-h1 
-	margin: 0 
-	font-size: 6em 
-	
-p 
-	margin: .5em 
+	min-height: 100vh
+	font-family: sans-serif
+	text-align: center
 
-.glass-effect 
+.main-content
+	padding: 1em
+	min-width: 100%
+
+h1
+	margin: 0
+	font-size: 6em
+
+p
+	margin: .5em
+
+.glass-effect
 	// from https://css.glass
-	background: rgba(255, 255, 255, 0.4) 
-	border-radius: 1em 
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) 
-	backdrop-filter: blur(5px) 
-	-webkit-backdrop-filter: blur(5px) 
+	background: rgba(255, 255, 255, 0.4)
+	border-radius: 1em
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
+	backdrop-filter: blur(5px)
+	-webkit-backdrop-filter: blur(5px)
 	border: 1px solid rgba(255, 255, 255, 0.18)
-	
-.weather-container 
-	display: flex 
-	flex-direction: column 
-	justify-content: center 
-	align-items: center 
-	position: relative 
-	width: 17em 
-	height: 15em 
-	padding: .5em 
-	text-align: center 
-	line-height: 0.5 
-	
+
+.weather-container
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+	position: relative
+	width: 17em
+	min-height: 15em
+	padding: .5em
+	text-align: center
+	line-height: 0.5
+
+	img
+		width: 100px
+		margin-top: 0.75em
+		margin-bottom: 1.5em
+
+	.location
+		font-size: 2em
+
+	.temperature
+		font-size: 1.5em
+		& > span
+			position: absolute
+			font-size: .5em
+
 .main-task>input,
-.search-box>input 
-	border: 0 
-	background-color: unset 
-	border-bottom: solid rgba(0, 0, 0, 0.425) 2px 
-	
-input 
-	&::placeholder 
-		color: black 
-		
-.search-box 
+.search-box>input
+	border: 0
+	background-color: unset
+	border-bottom: solid rgba(0, 0, 0, 0.425) 2px
+
+input
+	&::placeholder
+		color: black
+
+.search-box
 
 	& > #locationInput
 		width: 100%
 
-	& > button 
+	& > button
 		margin-top: 1em
-		background-color: transparent 
-		border: unset 
-		box-shadow: 1px 1px 5px 
-		outline: none 
-		cursor: pointer 
-		&:hover 
-			background-color: rgb(213, 235, 255) 
-			color: black 
-			opacity: 0.5 
-			transition: 0.3s 
-			
-.location 
-	font-size: 2em 
-	
-.weather 
-	& > img 
-		width: 100% 
-		
-.temperature 
-	font-size: 1.5em 
-	& > span 
-		position: absolute 
-		font-size: .5em 
-		
-.time 
-	margin: 1em auto 
-	min-height: 10em 
-	max-width: 30em 
-	
-.hour, .date 
-	margin: 0 
-	font-size: 3em 
-	
-.main-task 
-	display: flex 
-	justify-content: space-around 
-	align-items: center 
-	margin: 1em auto 
-	max-width: 50em 
-	padding: .5em 
-	
-#task 
-	width: 30em 
-	font-size: 1.3em 
-	
-#done 
+		background-color: transparent
+		border: unset
+		box-shadow: 1px 1px 5px
+		outline: none
+		cursor: pointer
+		&:hover
+			background-color: rgb(213, 235, 255)
+			color: black
+			opacity: 0.5
+			transition: 0.3s
+
+.time
+	margin: 1em auto
+	min-height: 10em
+	max-width: 30em
+
+.hour, .date
+	margin: 0
+	font-size: 3em
+
+.main-task
+	display: flex
+	justify-content: space-around
+	align-items: center
+	margin: 1em auto
+	max-width: 50em
+	padding: .5em
+
+#task
+	width: 30em
+	font-size: 1.3em
+
+#done
 	transform: scale(3)
-	
-.random-quote 
+
+.random-quote
 	font-weight: bold
-	max-width: max-content 
-	margin: auto 
+	max-width: max-content
+	margin: auto
+
+.lds-ripple
+	display: inline-block
+	position: relative
+	width: 80px
+	height: 80px
+
+	& div
+		position: absolute
+		border: 4px solid #fff
+		opacity: 1
+		border-radius: 50%
+		animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite
+
+	& div:nth-child(2)
+		animation-delay: -0.5s
+
+@keyframes lds-ripple
+	0%
+		top: 36px
+		left: 36px
+		width: 0
+		height: 0
+		opacity: 0
+
+	4.9%
+		top: 36px
+		left: 36px
+		width: 0
+		height: 0
+		opacity: 0
+
+	5%
+		top: 36px
+		left: 36px
+		width: 0
+		height: 0
+		opacity: 1
+
+	100%
+		top: 0px
+		left: 0px
+		width: 72px
+		height: 72px
+		opacity: 0

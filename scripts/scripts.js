@@ -8,6 +8,8 @@ const locationDisplay = document.querySelector( '#location' );
 const temperatureDisplay = document.querySelector( '#temperature' );
 const searchLocation = document.querySelector( '#searchButton' );
 const locationInput = document.querySelector( '#locationInput' );
+const weatherInfo = document.querySelector( '#weatherInfo' );
+const weatherLoading = document.querySelector( '#weatherLoading' );
 const weatherDescriptionDisplay = document.querySelector( '#description' );
 const weatherImageDisplay = document.querySelector( '#weatherImage' );
 const randomQuoteDisplay = document.querySelector( '#quote' );
@@ -38,7 +40,7 @@ fetchDate();
 async function fetchWeather( lat, long ) {
     // construct the API URL with queries and API key
     // https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-    const url = 'https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=' + apiKey;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`;
     // send HTTP request to the API using the fetch() function.
     //     await keyword ensures that the response is fully received before proceeding
     const response = await fetch( url );
@@ -59,6 +61,10 @@ async function fetchGeo( location ) {
 // set up an event listener for our search button
 //     when the button is clicked, the callback function will trigger
 searchLocation.addEventListener( 'click', async () => {
+    // start loading
+    weatherInfo.style.display = 'none';
+    weatherLoading.style.display = null;
+
     // grab the user input from the search box and pass it to fetchGeo
     const geo = await fetchGeo( locationInput.value );
 
@@ -89,12 +95,11 @@ searchLocation.addEventListener( 'click', async () => {
     // instead of downloading every single weather image, use the built in ones we forgot about
     //    we are setting the source of the image by concatenating the img URL and the current icon code
     weatherImageDisplay.src = 'https://openweathermap.org/img/wn/' + weather.weather[0].icon + '@2x.png';
-} );
 
-// Copyright © 2019 Luke Peavey
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+    // end loading
+    weatherInfo.style.display = null;
+    weatherLoading.style.display = 'none';
+} );
 
 async function getRandomQuote() {
     const url = 'https://api.quotable.io/quotes/random';
